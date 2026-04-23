@@ -11,6 +11,9 @@ circuits/keys/
 # Circom 
 circom/
 
+# Database file
+db/seed.sql
+
 # Foundry Builds
 contracts/broadcast/
 contracts/out/
