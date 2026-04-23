@@ -1,0 +1,20 @@
+# Environtment Variables
+.env
+
+# Node Modules
+node_modules/
+
+# ZK Builds
+circuits/build/
+circuits/keys/
+
+# Circom 
+circom/
+
+# Foundry Builds
+contracts/broadcast/
+contracts/out/
+contracts/cache/
+
+# Frontend Builds
+frontend/build/
