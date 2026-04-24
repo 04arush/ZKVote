@@ -1,0 +1,2 @@
+export const ZKVOTING_ADDRESS = '0x0000000000000000000000000000000000000000'; // To be filled after deployment
+export const SEPOLIA_CHAIN_ID = 11155111;
