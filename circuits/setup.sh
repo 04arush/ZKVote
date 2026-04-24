@@ -2,9 +2,9 @@
 
 echo "Starting ZKVote Trusted Setup..."
 
-# Compile circuit
+# Compile circuit with include path
 echo "Compiling circuit..."
-circom vote.circom --r1cs --wasm --sym -o build/
+circom vote.circom --r1cs --wasm --sym -o build/ -l node_modules
 
 # Powers of Tau Phase 1
 echo "Powers of Tau - Phase 1..."
