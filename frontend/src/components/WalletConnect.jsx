@@ -18,7 +18,7 @@ const WalletConnect = ({ onConnect }) => {
       }
 
       const provider = getProvider();
-      const accounts = await provider.send('eth_requestAccounts', []);
+      await provider.send('eth_requestAccounts', []);
       const network = await provider.getNetwork();
 
       if (Number(network.chainId) !== SEPOLIA_CHAIN_ID) {
