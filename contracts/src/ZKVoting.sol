@@ -82,7 +82,7 @@ contract ZKVoting {
             proofA,
             proofB,
             proofC,
-            [nullifier, commitment, voteOption, proposalId]
+            [commitment, nullifier, proposalId, voteOption, proposal.numOptions]
         );
         
         if (!valid) revert InvalidProof();
