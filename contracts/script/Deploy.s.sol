@@ -9,7 +9,7 @@ contract Deploy is Script {
     function run() external {
         vm.startBroadcast();
         
-        Verifier verifier = new Verifier();
+        Groth16Verifier verifier = new Groth16Verifier();
         console.log("Verifier deployed at:", address(verifier));
         
         ZKVoting zkVoting = new ZKVoting(address(verifier));
