@@ -8,7 +8,7 @@ import "../src/IVerifier.sol";
 contract MockVerifier is IVerifier {
     bool public shouldReturnTrue = true;
     
-    function verifyProof(uint[2] calldata, uint[2][2] calldata, uint[2] calldata, uint[4] calldata) 
+    function verifyProof(uint[2] calldata, uint[2][2] calldata, uint[2] calldata, uint[5] calldata) 
         external view returns (bool) {
         return shouldReturnTrue;
     }

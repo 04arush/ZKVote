@@ -6,7 +6,7 @@ import "../src/ZKVoting.sol";
 import "../src/IVerifier.sol";
 
 contract MockVerifier is IVerifier {
-    function verifyProof(uint[2] calldata, uint[2][2] calldata, uint[2] calldata, uint[4] calldata) 
+    function verifyProof(uint[2] calldata, uint[2][2] calldata, uint[2] calldata, uint[5] calldata) 
         external pure returns (bool) {
         return true;
     }
