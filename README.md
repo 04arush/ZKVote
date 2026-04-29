@@ -115,7 +115,6 @@ zkvote/
 ├── backend/           # Node.js REST API
 ├── frontend/          # React DApp
 ├── db/                # MySQL schema and seeds
-├── AI_INSTRUCTIONS.md # Complete build documentation
 └── SETUP.md          # Setup and deployment guide
 ```
 
