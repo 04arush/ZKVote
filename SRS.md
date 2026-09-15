@@ -2,11 +2,10 @@
 
 ## ZKVote: A Privacy-Preserving Decentralized Voting System Using Zero-Knowledge Proofs and Smart Contracts
 
-**Prepared for:** BCSP-064 Project Report (IGNOU BCA, 6th Semester)
-**Prepared by:** Arush Singh (Enrolment No.: 2352467696)
-**Guide:** Kushagra Sahni, B.E. Computer Science (BITS Pilani), Senior Software Engineer, Eightfold AI
-**Document Version:** 1.0
-**Conforms to:** IEEE 830-style SRS structure, adapted to BCSP-064 Analysis Document requirements (SRS, E-R/Class diagrams, DFDs, Data Dictionary)
+- **Prepared for:** Final Year Project Report
+- **Prepared by:** Arush Singh
+- **Guide:** Kushagra Sahni
+- **Document Version:** 1.0
 
 ---
 
