@@ -9,14 +9,6 @@
 
 ---
 
-## Document Control
-
-| Version | Date | Author | Change Description |
-|---|---|---|---|
-| 1.0 | Draft | Arush Singh | Initial SRS derived from approved Project Synopsis |
-
----
-
 ## Table of Contents
 
 1. Introduction
@@ -36,7 +28,7 @@
 ## 1. Introduction
 
 ### 1.1 Purpose
-This SRS defines the complete functional and non-functional requirements for **ZKVote**, a privacy-preserving decentralized voting DApp built on the Ethereum Sepolia testnet using Zero-Knowledge Proofs (Groth16/Circom), Solidity smart contracts, a React.js frontend, and a MySQL-backed metadata service. This document expands the approved Project Synopsis into a formal Analysis Document as required under BCSP-064 Section V ("Items to be included in the Project Report") and is intended to guide design, coding, and testing, and to serve as the basis for the project's Design Document.
+This SRS defines the complete functional and non-functional requirements for **ZKVote**, a privacy-preserving decentralized voting DApp built on the Ethereum Sepolia testnet using Zero-Knowledge Proofs (Groth16/Circom), Solidity smart contracts, a React.js frontend, and a MySQL-backed metadata service.
 
 ### 1.2 Scope
 ZKVote allows a registered voter to prove — via a zero-knowledge proof — that they are eligible to vote, are voting for a valid option, and have not voted before, **without revealing which option they chose**. The system guarantees:
@@ -74,11 +66,9 @@ Out of scope for the current version (see Future Scope): PLONK/STARK proof syste
 5. Foundry Book — book.getfoundry.sh
 6. Grassi, L., et al., "Poseidon: A New Hash Function for Zero-Knowledge Proof Systems," USENIX Security 2021.
 7. Ethers.js Documentation v6 — docs.ethers.org/v6
-8. BCSP-064 Project Guidelines, IGNOU School of Computer and Information Sciences.
-9. Approved ZKVote Project Synopsis (this project), submitted under Enrolment No. 2352467696.
 
 ### 1.5 Overview
-Section 2 gives the overall product context. Section 3 enumerates functional requirements as discrete system features. Section 4 specifies external interfaces. Section 5 reproduces and extends the DFDs, ER diagram, and data dictionary from the synopsis into a fuller analysis. Section 6 details the data design across all three storage layers (MySQL, smart contract storage, circuit signals). Section 7 covers non-functional requirements. Section 8 lists constraints. Section 9 isolates security requirements (given their centrality to a voting system). Section 10 maps requirements to the BCSP-064-mandated testing levels. Section 11 holds supporting appendices.
+Section 2 gives the overall product context. Section 3 enumerates functional requirements as discrete system features. Section 4 specifies external interfaces. Section 5 reproduces and extends the DFDs, ER diagram, and data dictionary. Section 6 details the data design across all three storage layers (MySQL, smart contract storage, circuit signals). Section 7 covers non-functional requirements. Section 8 lists constraints. Section 9 isolates security requirements (given their centrality to a voting system). Section 10 maps mandated testing levels. Section 11 holds supporting appendices.
 
 ---
 
@@ -135,7 +125,6 @@ The blockchain layer is the **sole source of truth** for anything that affects v
 - Groth16 requires a circuit-specific trusted setup (Powers of Tau + Phase 2) — a known constraint acknowledged and slated for future migration to PLONK/STARKs.
 - Circuit correctness is fixed at compile time; any change to voting logic (e.g., new constraint) requires re-running trusted setup and redeploying `Verifier.sol`.
 - Gas costs bound the practical size of on-chain state (mappings only, no arrays iterated on-chain for tallying beyond `optionIndex` bounds).
-- Per BCSP-064 guidelines: Visual Basic + MS-Access combination is disallowed (not applicable here); C/C++ is disallowed for database-related project components (not applicable — Node.js/Express is used).
 
 ### 2.6 Assumptions and Dependencies
 - Voters have access to a funded Sepolia wallet (testnet ETH) for gas.
@@ -223,7 +212,7 @@ Each feature is expressed as: description, inputs, processing, outputs, and prio
 ## 4. External Interface Requirements
 
 ### 4.1 User Interfaces
-Per synopsis Section 5.5 ("Reports and Output Screens"), the frontend must provide, at minimum:
+The frontend must provide, at minimum:
 
 | Screen | Key Elements |
 |---|---|
@@ -436,7 +425,7 @@ CREATE TABLE Candidates (
 
 ## 10. Testing Requirements — Traceability to BCSP-064 Testing Levels
 
-Per Section 5.4 of the synopsis and BCSP-064's mandate for separate Unit, Integration, and System testing reports:
+Separate Unit, Integration, and System testing reports:
 
 | Requirement | Test Level | Sample Test Case |
 |---|---|---|
@@ -458,14 +447,11 @@ Per Section 5.4 of the synopsis and BCSP-064's mandate for separate Unit, Integr
 
 ## 11. Appendices
 
-### 11.1 Traceability: Synopsis → SRS
-This SRS is a direct elaboration of the approved synopsis's Sections 4 (System Analysis) and 5 (Project Structure); no requirement introduced here contradicts or extends the approved project title or scope, in compliance with the guideline that a Project Report's title/scope must not differ from the approved Project Proposal.
-
 ### 11.2 Tools, Platform, Hardware & Software Requirements
-(Reproduced from synopsis Section 6 — Circom 2.0+, snarkjs 0.7+, circomlibjs, Solidity 0.8.20, Foundry, Node.js 18+/Express 4.x, React 18+, ethers.js 6.x, MetaMask, Sepolia testnet, MySQL 8.0+, mysql2, Postman, npm/yarn, Git/GitHub, VS Code, Windows 11/Ubuntu; minimum 8 GB RAM (16 GB recommended), 5 GB free storage, stable broadband.)
+(Circom 2.0+, snarkjs 0.7+, circomlibjs, Solidity 0.8.20, Foundry, Node.js 18+/Express 4.x, React 18+, ethers.js 6.x, MetaMask, Sepolia testnet, MySQL 8.0+, mysql2, Postman, npm/yarn, Git/GitHub, VS Code, Windows 11/Ubuntu; minimum 8 GB RAM (16 GB recommended), 5 GB free storage, stable broadband.)
 
 ### 11.3 Open Items for Design Document
-The following are flagged for elaboration in the subsequent Design Document (per BCSP-064 Section V): detailed procedural design (pseudocode per function), full user-interface wireframes/mockups, and finalized custom-error naming conventions for the Solidity contracts.
+The following are flagged for elaboration in the subsequent Design Document: detailed procedural design (pseudocode per function), full user-interface wireframes/mockups, and finalized custom-error naming conventions for the Solidity contracts.
 
 ---
 
