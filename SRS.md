@@ -75,7 +75,7 @@ Section 2 gives the overall product context. Section 3 enumerates functional req
 ## 2. Overall Description
 
 ### 2.1 Product Perspective
-ZKVote is a new, self-contained system — not a modification of an existing product. It is composed of four cooperating subsystems, each independently developed and tested per the module breakdown in the synopsis:
+ZKVote is a new, self-contained system — not a modification of an existing product. It is composed of four cooperating subsystems, each independently developed and tested:
 
 ```
                         ┌───────────────────────────┐
@@ -121,7 +121,7 @@ The blockchain layer is the **sole source of truth** for anything that affects v
 - **Development tooling:** Foundry (forge/anvil/cast) for Solidity; Circom 2.0+ and snarkjs 0.7+ for the ZK circuit toolchain.
 
 ### 2.5 Design and Implementation Constraints
-- Must use Solidity 0.8.20 (per synopsis Tools table); no use of deprecated/unsafe patterns.
+- Must use Solidity 0.8.20; no use of deprecated/unsafe patterns.
 - Groth16 requires a circuit-specific trusted setup (Powers of Tau + Phase 2) — a known constraint acknowledged and slated for future migration to PLONK/STARKs.
 - Circuit correctness is fixed at compile time; any change to voting logic (e.g., new constraint) requires re-running trusted setup and redeploying `Verifier.sol`.
 - Gas costs bound the practical size of on-chain state (mappings only, no arrays iterated on-chain for tallying beyond `optionIndex` bounds).
@@ -204,7 +204,7 @@ Each feature is expressed as: description, inputs, processing, outputs, and prio
 - **Priority:** Medium (supports the voter-facing flow but is not part of the cryptographic trust boundary).
 
 ### 3.8 FR-8: Error Handling & User Feedback
-- **Description:** The system surfaces user-friendly errors for all failure states identified in the synopsis: MetaMask not connected, secret/commitment mismatch, double-vote attempt, expired voting period, rejected/failed transaction, invalid proof.
+- **Description:** The system surfaces user-friendly errors for all failure states identified: MetaMask not connected, secret/commitment mismatch, double-vote attempt, expired voting period, rejected/failed transaction, invalid proof.
 - **Priority:** Medium-High (essential for usability and for grading rubric coverage of "complete error handling").
 
 ---
@@ -282,7 +282,7 @@ ADMIN_USERS (1) ──Manages──< (N) ELECTIONS (1) ──Contains──< (N)
 - `on_chain_proposal_id` bridges the relational layer to the blockchain layer (links a DB election to its on-chain `proposalId`).
 - `option_index` maps each candidate directly to the integer vote option enforced inside the Circom circuit, keeping the off-chain display layer and on-chain cryptographic layer consistent.
 
-*(This diagram, and the on-chain "entities" below, together satisfy the BCSP-064 requirement for "E-R diagrams/Class diagrams/any related diagrams" — the MySQL ERD covers the relational side; Section 6.2/6.3 below document the smart-contract storage layout and circuit signal "schema" as the class/structure-equivalent for the on-chain and circuit layers, which are not naturally modeled as relational entities.)*
+
 
 ### 5.3 Data Dictionary
 
@@ -393,7 +393,7 @@ CREATE TABLE Candidates (
 | Usability | Non-technical voters should be able to complete registration and voting using only wallet-connect and form interactions; no manual cryptography required. |
 | Security | See Section 9 (dedicated section given the domain). |
 | Scalability | Current design targets small-to-medium elections (per Future Scope: ZK-rollup integration is the identified path to large-scale, thousands-of-voters deployments). |
-| Maintainability | Modular separation (circuit / contracts / frontend / backend) per Section 3 of the synopsis allows each layer to be modified independently, provided public interfaces (ABI, circuit public signals) remain stable. |
+| Maintainability | Modular separation (circuit / contracts / frontend / backend) allows each layer to be modified independently, provided public interfaces (ABI, circuit public signals) remain stable. |
 | Portability | Frontend runs in any modern Chromium/Firefox browser with MetaMask; backend runs on any Node.js 18+ environment. |
 | Auditability | All vote-affecting state transitions are recorded immutably on Sepolia and are independently verifiable via Etherscan. |
 
@@ -403,7 +403,6 @@ CREATE TABLE Candidates (
 
 - **Language/Version locks:** Solidity 0.8.20, Circom 2.0+, snarkjs 0.7+, Node 18+, React 18+, ethers.js 6.x, MySQL 8.0+.
 - **Trusted setup dependency:** Groth16 requires a per-circuit trusted setup; compromise of the toxic waste from this ceremony would theoretically allow forged proofs — mitigated by using a well-known, multi-party Powers of Tau ceremony output for Phase 1.
-- **BCSP-064 compliance constraints:** No Visual Basic + MS-Access combination; no C/C++ for the database-facing module; project must be undertaken solo (per guideline: "Not more than one student is permitted to work on a project").
 - **Browser-only proving:** All private-input cryptographic operations must run client-side (WASM) — no server ever sees `vote` or `secret`.
 
 ---
@@ -423,7 +422,7 @@ CREATE TABLE Candidates (
 
 ---
 
-## 10. Testing Requirements — Traceability to BCSP-064 Testing Levels
+## 10. Testing Requirements
 
 Separate Unit, Integration, and System testing reports:
 
