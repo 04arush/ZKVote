@@ -1,7 +1,7 @@
 USE zkvote_db;
 
 INSERT INTO Admin_Users (full_name, email, password_hash)
-VALUES ('Arush Singh', 'admin@zkvote.local', '<bcrypt-hash>');
+VALUES ('Arush Singh', 'admin@zkvote.local', '$2b$10$/dnhbY2zX4LpNdEe2Yehfuidw.4Woo3Im3Cjl5rSGaHaTlRQJ629K');
 
 INSERT INTO Elections (admin_id, title, description, start_time, end_time, on_chain_proposal_id, is_active)
 VALUES (1, 'Student Council Election 2026', 'Annual student council vote', NOW(), DATE_ADD(NOW(), INTERVAL 7 DAY), 1, TRUE);
