@@ -15,7 +15,7 @@ template Vote(numOptionsBits) {
     signal input commitment;    // must equal Poseidon(vote, secret)
     signal input nullifier;     // must equal Poseidon(secret, proposalId)
     signal input proposalId;
-    signal input voteOption;    // must qual the private 'vote'
+    signal input voteOption;    // must equal the private 'vote'
     signal input numOptions;    // upper bound for the range check
 
     // 1. Bind the public voteOption to the private vote.
