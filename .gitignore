@@ -4,11 +4,7 @@ node_modules/
 .env.local
 
 # Circuit build artifacts (to be regenerated, not commit)
-circuits/build/*.zkey
-circuits/build/*.wasm
-circuits/build/*.r1cs
-circuits/build/*.ptau
-circuits/build/witness.wtns
+circuits/build/
 
 # Foundry
 contracts/out/
