@@ -19,6 +19,7 @@ circuits/build/proof.json
 circuits/build/public.json
 
 # Foundry
+contracts/lib/
 contracts/out/
 contracts/cache/
 contracts/broadcast/
