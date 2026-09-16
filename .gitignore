@@ -3,8 +3,20 @@ node_modules/
 .env
 .env.local
 
-# Circuit build artifacts (to be regenerated, not commit)
-circuits/build/
+# Circuit build artifacts (to be regenerated from vote.circom)
+circuits/build/vote_js/
+circuits/build/*.r1cs
+circuits/build/*.sym
+
+# Circuit build artifacts (not needed once vote_final.zkey exists)
+circuits/build/vote_0000.zkey
+
+# Circuit build artifacts (Phase-1 ceremony steps and one-off smoke-test outputs)
+circuits/build/pot12_0000.ptau
+circuits/build/pot12_0001.ptau
+circuits/build/witness.wtns
+circuits/build/proof.json
+circuits/build/public.json
 
 # Foundry
 contracts/out/
