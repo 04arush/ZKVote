@@ -16,7 +16,7 @@ router.get("/:id/candidates", async (req, res) => {
         "SELECT candidate_id, candidate_name, party_or_affiliation, bio, option_index, profile_image_url FROM Candidates WHERE election_id = ? ORDER BY option_index ASC",
         [req.params.id]
     );
-    res, json(rows);
+    res.json(rows);
 });
 
 module.exports = router;
