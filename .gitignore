@@ -1,0 +1,26 @@
+# Node
+node_modules/
+.env
+.env.local
+
+# Circuit build artifacts (to be regenerated, not commit)
+circuits/build/*.zkey
+circuits/build/*.wasm
+circuits/build/*.r1cs
+circuits/build/*.ptau
+circuits/build/witness.wtns
+
+# Foundry
+contracts/out/
+contracts/cache/
+contracts/broadcast/
+
+# Frontend
+frontend/dist/
+frontend/node_modules/
+
+# Backend
+backend/node_modules/
+
+# OS
+.DS_Store
