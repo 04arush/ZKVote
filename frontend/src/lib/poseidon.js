@@ -23,6 +23,5 @@ export function generateRandomSecret() {
     // 253-bit random field element (safely under the BN128 scalar field size)
     const array = new Uint8Array(31);
     window.crypto.getRandomValues(array);
-    const hex = Array.from(array).map(b => b.toString(16).padStart(2, "0")).join("");
-    return BigInt("0x" + hex);
+    return BigInt("0x" + Buffer.from(array).toString("hex"));
 }
