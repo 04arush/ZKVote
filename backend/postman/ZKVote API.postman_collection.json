@@ -1,0 +1,134 @@
+{
+  "info": {
+    "_postman_id": "23cb4550-c07e-41a7-9e24-07a3ef37d4cd",
+    "name": "ZKVote API",
+    "description": "### Welcome to Postman! This is your first collection. \n\nCollections are your starting point for building and testing APIs. You can use this one to:\n\n• Group related requests\n• Test your API in real-world scenarios\n• Document and share your requests\n\nUpdate the name and overview whenever you’re ready to make it yours.\n\n[Learn more about Postman Collections.](https://learning.postman.com/docs/collections/collections-overview/)",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "58287084",
+    "_collection_link": "https://go.postman.co/collection/58287084-23cb4550-c07e-41a7-9e24-07a3ef37d4cd?source=collection_link"
+  },
+  "item":
+    {
+      "name": "Get Active Election",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/elections/active",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "elections",
+            "active"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Candidates",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{base_url}}/api/elections/1/candidates",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "elections",
+            "1",
+            "candidates"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin Login",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const data = pm.response.json();\r\npm.environment.set(\"jwt_token\", data.token);"
+            ]
+          }
+        }
+      ],
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"{{admin_email}}\",\r\n    \"password\": \"{{admin_password}}\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/admin/login",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Admin Create Election",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": "{{jwt_token}}",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"title\": \"Test Election 2\",\r\n  \"description\": \"A second election created via the admin API for testing\",\r\n  \"start_time\": \"2026-09-20 10:00:00\",\r\n  \"end_time\": \"2026-09-27 10:00:00\",\r\n  \"on_chain_proposal_id\": 2\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{base_url}}/api/admin/elections",
+          "host": [
+            "{{base_url}}"
+          ],
+          "path": [
+            "api",
+            "admin",
+            "elections"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "variable": [
+    {
+      "key": "json_web_token_0j0d",
+      "secret": true
+    }
+  ]
+}
